@@ -1,0 +1,9 @@
+[submodule "teensy-code/lib/ChRt"]
+	path = teensy-code/lib/ChRt
+	url = git@github.com:william-redenbaugh/ChRt.git
+[submodule "teensy-code/lib/--force"]
+	path = teensy-code/lib/--force
+	url = git@github.com:william-redenbaugh/chibi-lpwork.git
+[submodule "teensy-code/lib/chibi-lpwork"]
+	path = teensy-code/lib/chibi-lpwork
+	url = git@github.com:william-redenbaugh/chibi-lpwork.git
