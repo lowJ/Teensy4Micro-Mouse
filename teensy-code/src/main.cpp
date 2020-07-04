@@ -8,6 +8,7 @@
 // Other libraries
 
 // Our runtime files. 
+#include "led_matrix_runtime.hpp"
 
 /**************************************************************************/
 /*!
