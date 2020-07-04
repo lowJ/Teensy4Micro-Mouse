@@ -10,10 +10,13 @@ Last Edit Date: 7/3/2020
 // Our own modules 
 #include "lwip_thread.hpp"
 
-// Other libraries
-
 // Our runtime files. 
 #include "led_matrix_runtime.hpp"
+#include "main_logic.hpp"
+#include "buzzer_handler.hpp"
+#include "rotary_encoder_runtime.hpp"
+#include "ir_sensor_runtime.hpp"
+#include "motor_controller.hpp"
 
 /**************************************************************************/
 /*!
@@ -24,6 +27,15 @@ void chibiSetup(void){
   // This is technically a runtime thread but it holds a bunch of subthreads to do work 
   setup_lwip_thread();
 
+  // Setting up our other primary sensor and controlling modules
+  setup_buzzer_handler();
+  setup_ir_sensors();
+  setup_motor_controller();
+  setup_rotatary_encoders();
+  
+  chThdSleepSeconds(2);
+  // Since this is our primary logic unit, we wanna start this one last
+  setup_main_logic();
 }
 
 /**************************************************************************/

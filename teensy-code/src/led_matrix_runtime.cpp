@@ -24,8 +24,7 @@ static THD_FUNCTION(led_matrix_thread, arg){
     led_runtime_handler = chThdGetSelfX();
 
     _start_ws2812b_matrix();
-    bool animation_changed = 0;
-
+    
     for(;;){
         chThdSleepSeconds(1);
     }
