@@ -1,3 +1,8 @@
+/*
+Author: William Redenbaugh, Jonathan Low
+Last Edit Date: 7/3/2020
+*/
+
 #ifndef _IR_SENSOR_RUNTIME_HPP
 #define _IR_SENSOR_RUNTIME_HPP
 

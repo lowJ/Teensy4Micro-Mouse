@@ -1,3 +1,8 @@
+/*
+Author: William Redenbaugh, Jonathan Low
+Last Edit Date: 7/3/2020
+*/
+
 #include "ir_sensor_runtime.hpp"
 
 // Keeping the latest distance measurements for our IR sensors. 

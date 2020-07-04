@@ -1,3 +1,8 @@
+/*
+Author: William Redenbaugh, Jonathan Low
+Last Edit Date: 7/3/2020
+*/
+
 #include "rotary_encoder_runtime.hpp"
 
 void left_rotary_encoder_isr(void);
