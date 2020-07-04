@@ -1,3 +1,8 @@
+/*
+Author: William Redenbaugh
+Last Edit Date: 7/3/2020
+*/
+
 #include "led_matrix_runtime.hpp"
 
 MUTEX_DECL(led_matrix_mutex);
@@ -19,8 +24,8 @@ static THD_FUNCTION(led_matrix_thread, arg){
     led_runtime_handler = chThdGetSelfX();
 
     _start_ws2812b_matrix();
-    
-    bool animation_changed = 0; 
+    bool animation_changed = 0;
+
     for(;;){
         chThdSleepSeconds(1);
     }

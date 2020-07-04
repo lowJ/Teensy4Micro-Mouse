@@ -1,3 +1,8 @@
+/*
+Author: William Redenbaugh, Jonathan Low
+Last Edit Date: 7/3/2020
+*/
+
 // Arduino and ChibiOS Libraries 
 #include "Arduino.h"
 #include "ChRt.h"
