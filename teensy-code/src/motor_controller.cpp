@@ -1,69 +1,121 @@
 /*
 Author: William Redenbaugh, Jonathan Low
-Last Edit Date: 7/3/2020
+Last Edit Date: 7/14/2020
 */
 
 #include "motor_controller.hpp"
 
 extern void setup_motor_controller(void);
 
+/**************************************************************************/
+/*!
+    @brief Where we call our motor initialization.
+*/
+/**************************************************************************/
 extern void setup_motor_controller(void){
 
     // Setting up the gpio for our motors. 
     pinMode(MOTOR1_BACKWARD, OUTPUT);
     pinMode(MOTOR1_FORWARD, OUTPUT);
-    
     pinMode(MOTOR1_PWM, OUTPUT);
-    analogWriteResolution(8);
     
     pinMode(MOTOR2_BACKWARD, OUTPUT);
     pinMode(MOTOR2_FORWARD, OUTPUT);
     pinMode(MOTOR2_PWM, OUTPUT);
+
+    // Adjusting the frequency. 
+    analogWriteResolution(8);
+    analogWriteFrequency(MOTOR2_PWM, 585937.5);
+    analogWriteFrequency(MOTOR1_PWM, 585937.5);
 }
 
-void set_m1_dir(uint8_t dir){ //0 = backwards, 1 = forward
-    if(dir){ //test if these are correct, if not, reverse
-        digitalWrite(M1_FORWARD, 1);
-        digitalWrite(M1_BACKWARD, 0);
+/**************************************************************************/
+/*!
+    @brief Sets the direction of motor m1
+    @param motor_dir_t
+*/
+/**************************************************************************/
+void set_m1_dir(motor_dir_t dir){ 
+    switch(dir){
+    case(MOTOR_FORWARD):
+        digitalWrite(MOTOR1_FORWARD, 1);
+        digitalWrite(MOTOR1_BACKWARD, 0);
+    break;
+
+    case(MOTOR_BACKWARD):
+        digitalWrite(MOTOR1_FORWARD, 0);
+        digitalWrite(MOTOR1_BACKWARD, 1);
+    break;
     }
-    else{
-        digitalWrite(M1_FORWARD, 0);
-        digitalWrite(M1_BACKWARD, 1);
+}
+
+/**************************************************************************/
+/*!
+    @brief Sets the direction of motor m2
+    @param motor_dir_t
+*/
+/**************************************************************************/
+void set_m2_dir(motor_dir_t dir){ 
+    switch(dir){
+    case(MOTOR_FORWARD):
+        digitalWrite(MOTOR2_FORWARD, 1);
+        digitalWrite(MOTOR2_BACKWARD, 0);
+    break;
+
+    case(MOTOR_BACKWARD):
+            digitalWrite(MOTOR2_FORWARD, 0);
+            digitalWrite(MOTOR2_BACKWARD, 1);   
+    break;
     }
 }
 
-void set_m2_dir(uint8_t dir){ //0 = backwards, 1 = forward
-    if(dir){ //test if these are correct, if not, reverse
-        digitalWrite(M2_FORWARD, 1);
-        digitalWrite(M2_BACKWARD, 0);
-    }
-    else{
-        digitalWrite(M2_FORWARD, 0);
-        digitalWrite(M2_BACKWARD, 1);
-    }
+/**************************************************************************/
+/*!
+    @brief Sets the direction of motor m1
+    @param motor_dir_t
+*/
+/**************************************************************************/
+void set_m1_speed(uint8_t speed){
+    analogWrite(MOTOR1_PWM, speed);
 }
 
-void set_m1_spd(uint8_t spd){
-    analogWrite(M1_SPEED, spd);
+/**************************************************************************/
+/*!
+    @brief Sets the speed of the m2 motor
+*/
+/**************************************************************************/
+void set_m2_speed(uint8_t speed){
+    analogWrite(MOTOR2_PWM, speed);
 }
 
-void set_m2_spd(uint8_t spd){
-    analogWrite(M2_SPEED, spd);
-}
-
+/**************************************************************************/
+/*!
+    @brief Stops the m1 motor
+*/
+/**************************************************************************/
 void m1_stop(){
-    digitalWrite(M1_FORWARD, 0);
-    digitalWrite(M1_BACKWARD, 0);
-    analogWrite(M1_SPEED, 0);
+    digitalWrite(MOTOR1_FORWARD, 0);
+    digitalWrite(MOTOR1_BACKWARD, 0);
+    analogWrite(MOTOR1_PWM, 0);
 }
 
+/**************************************************************************/
+/*!
+    @brief Stops the m2 motor
+*/
+/**************************************************************************/
 void m2_stop(){
-    digitalWrite(M2_FORWARD, 0);
-    digitalWrite(M2_BACKWARD, 0);
-    analogWrite(M2_SPEED, 0);
+    digitalWrite(MOTOR2_FORWARD, 0);
+    digitalWrite(MOTOR2_BACKWARD, 0);
+    analogWrite(MOTOR2_PWM, 0);
 }
 
-void m1_m2_stop(){
+/**************************************************************************/
+/*!
+    @brief Stops both motors
+*/
+/**************************************************************************/
+void both_motor_stop(){
     m1_stop();
     m2_stop();
 }
