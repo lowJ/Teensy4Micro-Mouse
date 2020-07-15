@@ -10,7 +10,11 @@ Last Edit Date: 7/3/2020
 #include "Arduino.h"
 #include "ChRt.h"
 
-void setup_buzzer_handler(void);
-void en_buzzer(bool buzz); 
+// GPIO for the buzzer. 
+#define BUZZER_GPIO 13
+
+extern void setup_buzzer_handler(void);
+extern void en_buzzer(bool buzz); 
+extern void buzzer_tone(uint16_t freq);
 
 #endif
